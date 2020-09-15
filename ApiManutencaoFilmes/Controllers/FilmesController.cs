@@ -6,6 +6,7 @@ using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,12 +18,10 @@ namespace ApiManutencaoFilmes.Controllers {
     [ApiController]
     public class FilmesController : ControllerBase {
 
-        private readonly ApiManutencaoFilmesContext _context;
         private readonly IDataRepository<Filme> _repo;
         private readonly IMapper _mapper;
 
-        public FilmesController(ApiManutencaoFilmesContext context, IDataRepository<Filme> repo, IMapper mapper) {
-            _context = context;
+        public FilmesController(IDataRepository<Filme> repo, IMapper mapper) {
             _repo = repo;
             _mapper = mapper;
         }
@@ -31,10 +30,17 @@ namespace ApiManutencaoFilmes.Controllers {
         [HttpGet]
         public async Task<ActionResult<IEnumerable<FilmeDTO>>> GetFilmes() {
 
-            var filmes = await _repo.Get().ToListAsync();
-            var filmesDTO = _mapper.Map<List<FilmeDTO>>(filmes);
+            try {
 
-            return filmesDTO;
+                var filmes = await _repo.Get().ToListAsync();
+                var filmesDTO = _mapper.Map<List<FilmeDTO>>(filmes);
+
+                return filmesDTO;
+
+            } catch (Exception) {
+
+                return BadRequest();
+            }                       
         }
 
         // GET: api/Filmes/5
@@ -45,13 +51,14 @@ namespace ApiManutencaoFilmes.Controllers {
             }
 
             var filme = await _repo.GetById(p => p.FilmeId == id);
-            var filmeDTO = _mapper.Map<FilmeDTO>(filme);
 
-            if (filmeDTO == null) {
+            if (!FilmesExists(id)) {
                 return NotFound();
             }
 
-            return Ok(filmeDTO);
+            var filmeDTO = _mapper.Map<FilmeDTO>(filme);        
+
+            return filmeDTO;
         }
 
         // PUT: api/Filmes/5
@@ -73,7 +80,7 @@ namespace ApiManutencaoFilmes.Controllers {
                 _repo.Update(filme);
                 var save = await _repo.SaveAsync(filme);
 
-            } catch (DbUpdateConcurrencyException) {
+            } catch (Exception) {
                 if (!FilmesExists(id)) {
                     return NotFound();
                 } else {
@@ -81,7 +88,7 @@ namespace ApiManutencaoFilmes.Controllers {
                 }
             }
 
-            return NoContent();
+            return Ok();
         }
 
         // POST: api/Filmes
@@ -101,7 +108,7 @@ namespace ApiManutencaoFilmes.Controllers {
 
             var filmeDTO = _mapper.Map<FilmeDTO>(filme);
 
-            return CreatedAtAction("GetFilme", new { id = filmeDTO.FilmeId }, filmeDTO);
+            return new CreatedAtRouteResult("GetFilme", new { id = filmeDTO.FilmeId }, filmeDTO);
         }
 
         // DELETE: api/Filmes/5
@@ -113,7 +120,7 @@ namespace ApiManutencaoFilmes.Controllers {
 
             var filme = await _repo.GetById(p => p.FilmeId == id);
 
-            if (filme == null) {
+            if (!FilmesExists(id)) {
                 return NotFound();
             }
 
@@ -125,8 +132,11 @@ namespace ApiManutencaoFilmes.Controllers {
             return Ok(filmeDTO);
         }
 
-        private bool FilmesExists(int id) {
-            return _context.Filmes.Any(e => e.FilmeId == id);
+        private bool FilmesExists(int id) {          
+
+            var exists = _repo.GetById(e => e.FilmeId == id).Result == null ? false : true;
+
+            return exists;            
         }
     }
 }

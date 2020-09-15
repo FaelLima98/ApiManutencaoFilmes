@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiManutencaoFilmes", "ApiManutencaoFilmes\ApiManutencaoFilmes.csproj", "{ABC31AB9-CBEE-4570-A2DF-6BCCAA1D803E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiManutencaoFilmes", "ApiManutencaoFilmes\ApiManutencaoFilmes.csproj", "{ABC31AB9-CBEE-4570-A2DF-6BCCAA1D803E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiManutencaoFilmesxUnitTests", "ApiManutencaoFilmesxUnitTests\ApiManutencaoFilmesxUnitTests.csproj", "{9CBB7B70-E5DA-4935-84D9-BBCA9A7B8F16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{ABC31AB9-CBEE-4570-A2DF-6BCCAA1D803E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ABC31AB9-CBEE-4570-A2DF-6BCCAA1D803E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ABC31AB9-CBEE-4570-A2DF-6BCCAA1D803E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CBB7B70-E5DA-4935-84D9-BBCA9A7B8F16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CBB7B70-E5DA-4935-84D9-BBCA9A7B8F16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CBB7B70-E5DA-4935-84D9-BBCA9A7B8F16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CBB7B70-E5DA-4935-84D9-BBCA9A7B8F16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

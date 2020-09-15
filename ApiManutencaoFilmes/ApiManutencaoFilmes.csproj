@@ -7,6 +7,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20200911091711_Inicial.cs" />
     <Compile Remove="Migrations\20200911091711_Inicial.Designer.cs" />
+    <Compile Remove="Migrations\20200912134112_Identity.cs" />
+    <Compile Remove="Migrations\20200912134112_Identity.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +30,10 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.0.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.7.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>
