@@ -108,7 +108,7 @@ namespace ApiManutencaoFilmes.Controllers {
 
             var filmeDTO = _mapper.Map<FilmeDTO>(filme);
 
-            return new CreatedAtRouteResult("GetFilme", new { id = filmeDTO.FilmeId }, filmeDTO);
+            return CreatedAtAction("GetFilme", new { id = filmeDTO.FilmeId }, filmeDTO);
         }
 
         // DELETE: api/Filmes/5

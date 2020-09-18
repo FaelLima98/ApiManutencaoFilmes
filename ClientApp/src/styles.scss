@@ -1,0 +1,34 @@
+/* You can add global styles to this file, and also import other style files */
+
+:root{
+    --color-background: #F0F0F7;
+    --color-text-base: #6A6180;
+    --color-box-base: #FFFFFF;
+    font-size: 60%;
+}
+
+*{
+    /* Box Model */
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html,
+body{
+    height: 100vh;
+}
+
+body,
+input,
+button,
+textarea{
+    font: 500 1.6rem Poppins;
+    color: black;
+}
+
+
+#container{
+    width: 90vw;
+    max-width: 700px;
+}

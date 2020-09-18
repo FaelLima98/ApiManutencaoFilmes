@@ -1,0 +1,65 @@
+<body id="page-list-movie">
+    <div>
+        <h3>Lista de Filmes</h3>
+    </div>
+    <span>
+        <div class="container">
+            <label>Gênero: </label>
+            <select id="generoFilter" (change)="filterPorGenero($event.target.value)">
+                <option value="">--Todos</option>
+              <option [value]="genero.generoId" *ngFor="let genero of generos">
+                {{genero.nome}}
+              </option>
+            </select> 
+    
+            <label>Título: </label>
+            <select id="tituloFilter" (change)="filterPorTitulo($event.target.value)">
+                <option value="">--Todos</option>
+              <option [value]="filme.filmeId" *ngFor="let filme of cacheDataSource">
+                {{filme.titulo}}
+              </option>
+            </select> 
+        </div>
+    
+    </span>
+    
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    
+        <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+        
+        <!-- Coluna Titulo -->
+        <ng-container matColumnDef="titulo">
+            <th mat-header-cell *matHeaderCellDef> Título </th>
+            <td mat-cell *matCellDef="let element"> {{element.titulo}} </td>    
+        </ng-container>
+        
+        <!-- Coluna Diretor -->
+        <ng-container matColumnDef="diretor">
+            <th mat-header-cell *matHeaderCellDef> Diretor </th>
+            <td mat-cell *matCellDef="let element"> {{element.diretor}} </td>
+        </ng-container>
+        
+        <!-- Coluna Editar -->
+        <ng-container matColumnDef="acao1">
+            <th mat-header-cell *matHeaderCellDef>  </th>
+            <td mat-cell *matCellDef="let element"> <button mat-flat-button color="primary" routerLink="/filme-editar/{{element.filmeId}}" selected>Editar</button></td>
+            </ng-container>
+        
+        <!--Coluna Excluir-->
+        <ng-container matColumnDef="acao2">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let element"> <button mat-flat-button color="warn" (click)="openDialog(element.filmeId)">Excluir</button></td>
+        </ng-container>
+        
+        <!--Coluna Consultar-->
+        <ng-container matColumnDef="acao3">
+            <th mat-header-cell *matHeaderCellDef> </th>
+            <td mat-cell *matCellDef="let element"> <button mat-flat-button color="accent" routerLink="/filme-detalhe/{{element.filmeId}}" selected>Consultar</button></td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    
+    </table>
+      
+</body>

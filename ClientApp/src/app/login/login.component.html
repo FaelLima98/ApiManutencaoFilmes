@@ -1,0 +1,26 @@
+<body id="page-login">
+    <div id="container">
+        <header>
+            <div class="header-container">
+                <h3>Login</h3>
+            </div>
+        </header>
+
+        <main>
+            <form class="form-container" [formGroup]="loginForm" (ngSubmit)="addLogin(loginForm.value)">
+                <mat-form-field>
+                    <input matInput name="email" placeholder="Email" formControlName="email">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                    <input matInput type="password" name="password" placeholder="Senha" formControlName="password">
+                </mat-form-field>
+                <br>
+                <div class="buttons-container">
+                    <button type="submit" [disabled]="!loginForm.valid" mat-flat-button color="primary">Entrar</button>
+                    <button mat-flat-button color="accent" routerLink="/register" selected>Registrar</button>
+                </div>
+            </form>
+        </main>
+    </div>
+</body>

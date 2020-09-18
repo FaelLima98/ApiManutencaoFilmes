@@ -1,0 +1,40 @@
+<body id="page-edit-movie">
+  <div>
+    <h3>Editar Filme</h3>
+  </div>
+  <main>
+    <form class="form-container" [formGroup]="filmeForm" (ngSubmit)="updateFilme(filmeForm.value)">
+      <mat-form-field>
+        <input matInput name="titulo" placeholder="Título do Filme" formControlName="titulo">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <input matInput name="diretor" placeholder="Diretor" formControlName="diretor">
+      </mat-form-field>
+      <br>
+      <div class="select-block">
+        <label>Gênero: </label>
+        <br>
+        <select formControlName="generoId">
+          <option value="" disabled>Selecione um valor</option>
+          <option [value]="genero.generoId" *ngFor="let genero of generos">
+            {{genero.nome}}
+          </option>
+        </select>
+      </div>
+      <br>
+      <mat-form-field>
+      <textarea matInput name="sinopse" placeholder="Sinopse" formControlName="sinopse"></textarea>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+      <input matInput name="ano" placeholder="Ano" formControlName="ano">
+      </mat-form-field>
+      <br>  
+      <div class="buttons-container">
+        <button type="submit" [disabled]="!filmeForm.valid" mat-flat-button color="primary" >Editar</button>
+        <button mat-flat-button color="warn" routerLink="/filmes" selected>Cancelar</button>
+      </div> 
+    </form>
+  </main>
+</body>

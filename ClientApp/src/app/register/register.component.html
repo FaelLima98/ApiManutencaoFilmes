@@ -1,0 +1,29 @@
+<body id="page-register">
+    <div>
+        <h3>Registrar</h3>
+    </div>
+    <main>
+        <form class="form-container" [formGroup]="registerForm" (ngSubmit)="addRegister(registerForm.value)">
+            <mat-form-field>
+                <input matInput name="email" placeholder="Email" formControlName="email">
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <input matInput type="password" name="password" placeholder="Senha" formControlName="password">
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <input matInput type="password" name="confirmPassword" placeholder="Confirme a Senha" formControlName="confirmPassword">
+            </mat-form-field>
+            <br>
+            <span *ngIf="registerForm.errors?.invalid">
+                Senhas não batem
+            </span>
+            <br>
+            <div class="buttons-container">
+                <button type="submit" [disabled]="!registerForm.valid" mat-flat-button color="primary">Confirmar</button>
+                <button mat-flat-button color="warn" routerLink="/login" selected>Cancelar</button>
+            </div>            
+        </form>
+    </main>   
+</body>

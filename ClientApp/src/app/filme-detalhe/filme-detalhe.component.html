@@ -1,0 +1,30 @@
+<body id="page-detail-movie">
+  <div class="example-container mat-elevation-z8">
+    <div class="example-loading-shade"
+         *ngIf="isLoadingResults">
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+    <div class="button-row">
+      <button mat-stroked-button color="primary" [routerLink]="['/filmes']"><mat-icon>keyboard_backspace</mat-icon> Voltar</button>
+    </div>
+    <mat-card class="example-card">
+      <mat-card-header>
+        <mat-card-title><h2>{{filme.titulo}}</h2></mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <dl>
+          <dd>Diretor : {{filme.diretor}}</dd>
+        </dl> 
+        <dl>      
+          <dd>Gênero : {{genero.nome}}</dd>
+        </dl>       
+        <dl>
+          <dd>Sinopse : {{filme.sinopse}}</dd>
+        </dl>
+        <dl>
+          <dd>Ano : {{filme.ano}}</dd>
+        </dl>
+      </mat-card-content>   
+    </mat-card>
+</div>
+</body>
